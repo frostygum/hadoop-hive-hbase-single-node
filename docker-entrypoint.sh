@@ -4,7 +4,7 @@ echo "[SERVER] starting ssh services"
 sudo service ssh start
 
 echo "[SERVER] check if namenode is formatted"
-if [ ! -d "/tmp/hadoop-hduser/dfs/name" ]
+if [ ! -d "/home/data/dfs/namenode/current" ]
         then
                 hdfs namenode -format
                 echo "[SERVER] done formatting namenode"

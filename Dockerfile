@@ -34,7 +34,6 @@ RUN mkdir /home/data && mkdir /home/data/dfs && mkdir /home/data/dfs/datanode &&
 RUN mkdir /home/zookeeper
 
 RUN mv /opt/hive/lib/log4j-slf4j-impl-2.10.0.jar /opt/hive/lib/log4j-slf4j-impl-2.10.0.jar.bak
-RUN mv /opt/hbase/lib/client-facing-thirdparty/slf4j-log4j12-1.7.25.jar /opt/hbase/lib/client-facing-thirdparty/slf4j-log4j12-1.7.25.jar.bak
 
 ENV HDFS_NAMENODE_USER root
 ENV HDFS_DATANODE_USER root
@@ -73,10 +72,10 @@ COPY /hive-conf/hive-site.xml ${HIVE_HOME}/conf/
 COPY /hbase-conf/hbase-env.sh ${HBASE_HOME}/conf/
 COPY /hbase-conf/hbase-site.xml ${HBASE_HOME}/conf/
 
-COPY docker-entrypoint.sh /home/
+COPY /docker-entrypoint.sh /home/
 
 WORKDIR /home
 
-EXPOSE 22 9864 8088 9870 10000
+EXPOSE 22 9864 8088 9870 10000 16010 16030
 
 ENTRYPOINT ["/home/docker-entrypoint.sh"]
