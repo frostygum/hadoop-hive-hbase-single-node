@@ -3,7 +3,7 @@
 Please be sure you already have docker installed and uncheck "Use Docker Compose V2 release candidate" at docker preferences > experimental features.
 <div>
   <p align="center">
-    <img src="doc/docker-settings.png" width="500">
+    <img src="doc/docker-settings.png" width="auto">
   </p>
 </div>
 
@@ -28,6 +28,6 @@ Please be sure you already have docker installed and uncheck "Use Docker Compose
 ## Succesfull Output
 <div>
   <p align="center">
-    <img src="doc/successful-result.png" width="500">
+    <img src="doc/successful-result.png" width="auto">
   </p>
 </div>
