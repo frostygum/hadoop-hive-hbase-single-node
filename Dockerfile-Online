@@ -30,6 +30,7 @@ RUN mkdir /home/data && mkdir /home/data/dfs && mkdir /home/data/dfs/datanode &&
 RUN mkdir /home/zookeeper
 
 RUN mv /opt/hive/lib/log4j-slf4j-impl-2.10.0.jar /opt/hive/lib/log4j-slf4j-impl-2.10.0.jar.bak
+RUN mv /opt/hbase/lib/client-facing-thirdparty/slf4j-log4j12-1.7.25.jar /opt/hbase/lib/client-facing-thirdparty/slf4j-log4j12-1.7.25.jar.bak
 
 ENV HDFS_NAMENODE_USER root
 ENV HDFS_DATANODE_USER root

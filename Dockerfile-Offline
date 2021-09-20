@@ -13,20 +13,16 @@ COPY ssh_config /etc/ssh/ssh_config
 WORKDIR /opt/
 
 COPY /tar/hadoop-${BUILD_HADOOP_VERSION}.tar.gz /opt/
-COPY /tar/hive-${BUILD_HIVE_VERSION}.tar.gz /opt/
-COPY /tar/derby-${BUILD_DERBY_VERSION}.tar.gz /opt/
-COPY /tar/hbase-${BUILD_HBASE_VERSION}.tar.gz /opt/
-# RUN wget https://archive.apache.org/dist/hadoop/common/hadoop-${BUILD_HADOOP_VERSION}/hadoop-${BUILD_HADOOP_VERSION}.tar.gz
-# RUN wget https://archive.apache.org/dist/hadoop/common/hadoop-${BUILD_HADOOP_VERSION}/hadoop-${BUILD_HADOOP_VERSION}.tar.gz
-# RUN wget https://archive.apache.org/dist/hadoop/common/hadoop-${BUILD_HADOOP_VERSION}/hadoop-${BUILD_HADOOP_VERSION}.tar.gz
-# RUN wget https://archive.apache.org/dist/hadoop/common/hadoop-${BUILD_HADOOP_VERSION}/hadoop-${BUILD_HADOOP_VERSION}.tar.gz
+COPY /tar/apache-hive-${BUILD_HIVE_VERSION}-bin.tar.gz /opt/
+COPY /tar/db-derby-${BUILD_DERBY_VERSION}-bin.tar.gz /opt/
+COPY /tar/hbase-${BUILD_HBASE_VERSION}-bin.tar.gz /opt/
 
 RUN mkdir /opt/hadoop && mkdir /opt/hive && mkdir /opt/derby && mkdir /opt/hbase
 
 RUN tar zxvf /opt/hadoop-${BUILD_HADOOP_VERSION}.tar.gz -C hadoop --strip-components 1 && rm /opt/hadoop-${BUILD_HADOOP_VERSION}.tar.gz
-RUN tar zxvf /opt/hive-${BUILD_HIVE_VERSION}.tar.gz -C hive --strip-components 1 && rm /opt/hive-${BUILD_HIVE_VERSION}.tar.gz
-RUN tar zxvf /opt/derby-${BUILD_DERBY_VERSION}.tar.gz -C derby --strip-components 1 && rm /opt/derby-${BUILD_DERBY_VERSION}.tar.gz
-RUN tar zxvf /opt/hbase-${BUILD_HBASE_VERSION}.tar.gz -C hbase --strip-components 1 && rm /opt/hbase-${BUILD_HBASE_VERSION}.tar.gz
+RUN tar zxvf /opt/apache-hive-${BUILD_HIVE_VERSION}-bin.tar.gz -C hive --strip-components 1 && rm /opt/apache-hive-${BUILD_HIVE_VERSION}-bin.tar.gz
+RUN tar zxvf /opt/db-derby-${BUILD_DERBY_VERSION}-bin.tar.gz -C derby --strip-components 1 && rm /opt/db-derby-${BUILD_DERBY_VERSION}-bin.tar.gz
+RUN tar zxvf /opt/hbase-${BUILD_HBASE_VERSION}-bin.tar.gz -C hbase --strip-components 1 && rm /opt/hbase-${BUILD_HBASE_VERSION}-bin.tar.gz
 
 RUN ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa && cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && chmod 0600 ~/.ssh/authorized_keys
 
@@ -34,6 +30,7 @@ RUN mkdir /home/data && mkdir /home/data/dfs && mkdir /home/data/dfs/datanode &&
 RUN mkdir /home/zookeeper
 
 RUN mv /opt/hive/lib/log4j-slf4j-impl-2.10.0.jar /opt/hive/lib/log4j-slf4j-impl-2.10.0.jar.bak
+RUN mv /opt/hbase/lib/client-facing-thirdparty/slf4j-log4j12-1.7.25.jar /opt/hbase/lib/client-facing-thirdparty/slf4j-log4j12-1.7.25.jar.bak
 
 ENV HDFS_NAMENODE_USER root
 ENV HDFS_DATANODE_USER root
